@@ -1,0 +1,109 @@
+*{
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+.navigator{
+    background-image: url("../img/steve-johnson-k7IGeR8Tjrw-unsplash.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    width: 100%;
+    height: 130px;
+    text-align: center;
+    
+}
+
+.navigator #name{
+    padding-top: 40px;
+    color: rgb(242, 239, 239);
+}
+
+.navigator h3{
+    color: rgb(212,208,208);
+}
+
+.nav-button-container{
+    position: relative;
+    text-align: left;
+    padding: 3px;
+    bottom: 6px;
+}
+
+.nav-button{   
+    color: white;
+    padding: 5px 8px;
+    display: inline-block;
+    background-color:darkolivegreen;
+}
+
+.nav-button:hover{
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+table {
+    width: 80%;
+    border: 1px solid;
+    margin: 20px auto;
+  }
+
+  td,th{
+    height: 35px;
+  }
+
+.odd{
+    background-color: antiquewhite;
+}
+
+.even{
+    background-color:white;
+}
+
+#table-parent{
+    padding: 20px;
+    text-align: center;
+}
+
+#side-bar-container{
+    position: fixed;
+    left: -180px;
+    transition: all 0.7s;
+    z-index:10;
+}
+
+#side-bar{
+    display: inline-block;
+    position: absolute;
+    width:30px;
+    height:30px;
+    background-color:rgb(197, 197, 197);
+    left:180px;
+    cursor: pointer;
+}
+
+#side{
+    display: inline-block;
+    position: absolute;
+    width:180px;
+    height:1000px;
+    background-color: rgb(240, 240, 240);
+}
+
+#side-bar-container:hover {
+    left: 0px;
+}
+
+.side-button{
+    display: block;
+    padding-top:8px;
+    text-align: center;
+    border: 1px solid red;
+    height: 30px;
+}
+
+.side-button:hover{
+    background-color:white;
+    cursor: pointer;
+}
