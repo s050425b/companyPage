@@ -1,103 +1,28 @@
-
-
-/** 
-fetch('http://localhost:8080/employee',{
-    method : "GET",
-    mode: 'cors'
-})
-  .then(function(response) {
-    console.log(response.type);
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log(myJson);
-    document.getElementById("root").innerHTML="Age: "+myJson[0].age;
-  });
-
-console.log("hello");*/
+let tableString;
+let url;
+let checkboxString='<input type="checkbox" class="deleteCheckbox" >';
+let deleteButtonString=`<button class="fa-solid fa-trash-can"></button>`;
+let editButtonString=`<button class="fa-regular fa-pen-to-square listButton"></buton>`;
 
 document.getElementsByClassName("nav-button")[0].addEventListener("click", async()=>{
-    document.getElementById("table-title").innerHTML="Loading...";
-    waiting();
+    document.getElementById("table-title").innerHTML="Loading..."+`<i class="fa-solid fa-cog fa-spin"></i>`;
+    url='http://localhost:8080/employee';
+    let x = await new Promise( generateCustomerTable );
+    document.getElementById("table-title").innerHTML="Employee List";
+    document.getElementById("table-container").innerHTML=tableString;
 })
-
-
-
-
-let employees;
-function waiting(){
-    
-    let tableString="";
-    let fetchApi= new Promise(fetchEmployee);
-    fetchApi.then(()=>{
-        let count=1;
-       employees.forEach(employee =>{
-        if (count%2==0){
-            tableString+=`<tr class="even"><td>${employee.id}</td><td>${employee.name}</td><td>${employee.age}</td></tr>`;
-        }else {
-            tableString+=`<tr class="odd"><td>${employee.id}</td><td>${employee.name}</td><td>${employee.age}</td></tr>`;
-        }
-        count++  
-        });
-        return "Table created";
-    })
-    .then( ()=>{
-        tableString= "<table>" + tableString + "</table>";
-        document.getElementById("table-title").innerHTML="Employee List";
-        document.getElementById("table-container").innerHTML=tableString;
-    });
-}
-
-function fetchEmployee(resolve, reject){
-    fetch('http://localhost:8080/employee',{
-        method : "GET",
-        mode: 'cors'
-    })
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(myJson) {
-        console.log(myJson);
-        employees= myJson;
-        resolve("Fetch finish.");
-    });
-}
-
-
-//____________________________________________________________
-
 
 document.getElementsByClassName("nav-button")[1].addEventListener("click", async()=>{
-    document.getElementById("table-title").innerHTML="Loading...";
-    waiting2();
+    document.getElementById("table-title").innerHTML="Loading..."+`<i class="fa-solid fa-cog fa-spin"></i>`;
+    url='http://localhost:8080/customer';
+    let x = await new Promise( generateCustomerTable );
+    document.getElementById("table-title").innerHTML="Customer List";
+    document.getElementById("table-container").innerHTML=tableString;
 })
 
-let customers;
-function waiting2(){
-    
-    let tableString="";
-    let fetchApi= new Promise(fetchCustomer);
-    fetchApi.then(()=>{
-        let count=1;
-       customers.forEach(customer =>{
-        if (count%2==0){
-            tableString+=`<tr class="even"><td>${customer.id}</td><td>${customer.name}</td><td>${customer.age}</td></tr>`;
-        }else {
-            tableString+=`<tr class="odd"><td>${customer.id}</td><td>${customer.name}</td><td>${customer.age}</td></tr>`;
-        }
-        count++  
-        });
-        return "Table created";
-    })
-    .then( ()=>{
-        tableString= "<table>" + tableString + "</table>";
-        document.getElementById("table-title").innerHTML="Customer List";
-        document.getElementById("table-container").innerHTML=tableString;
-    });
-}
-
-function fetchCustomer(resolve, reject){
-    fetch('http://localhost:8080/customer',{
+async function generateCustomerTable(resolve, reject){
+    tableString="";
+    await fetch(url,{
         method : "GET",
         mode: 'cors'
     })
@@ -106,7 +31,28 @@ function fetchCustomer(resolve, reject){
     })
     .then(function(myJson) {
         console.log(myJson);
-        customers= myJson;
-        resolve("Fetch finish.");
+        return myJson
+    })
+    .then( (customers) =>{
+        let count=1;
+        
+        tableString="<thead><tr><th>Action</th><th>Id</th><th>Name</th><th>Age</th></tr></thead>"
+        customers.forEach(customer =>{
+        checkboxString=`<input type="checkbox" class="deleteCheckbox listButton" value="${customer.id}">`;
+        deleteButtonString=`<button class="fa-solid fa-trash-can listButton" value="${customer.id}"></button>`;
+        editButtonString=`<button class="fa-regular fa-pen-to-square listButton" value="${customer.id}"></button>`;
+        if (count%2==0){
+            tableString+=`<tr class="even"><td class="actionList"><div class="buttonList">${checkboxString}${deleteButtonString}${editButtonString}</div></td><td>${customer.id}</td><td>${customer.name}</td><td>${customer.age}</td></tr>`;
+        }else {
+            tableString+=`<tr class="odd"><td class="actionList"><div class="buttonList">${checkboxString}${deleteButtonString}${editButtonString}</div></td><td>${customer.id}</td><td>${customer.name}</td><td>${customer.age}</td></tr>`;
+        }
+        count++  
     });
+    
+    tableString= "<table>" + tableString + "</table>";
+    });
+
+    resolve("fetch done");
 }
+
+

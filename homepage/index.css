@@ -44,13 +44,17 @@
 }
 
 table {
-    width: 80%;
+    width: 65%;
     border: 1px solid;
     margin: 20px auto;
   }
 
   td,th{
     height: 35px;
+  }
+
+  tr:hover{
+    background-color: aquamarine;
   }
 
 .odd{
@@ -64,6 +68,12 @@ table {
 #table-parent{
     padding: 20px;
     text-align: center;
+    width: 100%;
+}
+
+#table-title{
+    width: 20%;
+    display:inline-block;
 }
 
 #side-bar-container{
@@ -76,12 +86,13 @@ table {
 #side-bar{
     display: inline-block;
     position: absolute;
-    width:30px;
-    height:30px;
+    
     background-color:rgb(197, 197, 197);
     left:180px;
     cursor: pointer;
+    padding:10px;
 }
+
 
 #side{
     display: inline-block;
@@ -106,4 +117,72 @@ table {
 .side-button:hover{
     background-color:white;
     cursor: pointer;
+}
+
+#searchContainer{
+    width: 450px;
+    height: 30px;
+    display: block;
+    margin: 20px auto;
+    padding: 5px;
+}
+
+#a{
+    width: 100%;
+}
+
+#inputBox{
+    width: 320px;
+    height: 25px;
+    border: 1px black solid;
+}
+
+#submitBtn{
+    width: 50px;
+    height: 25px;
+    margin-left: 10px;
+    border: 1px grey solid;
+}
+
+#searchDrop{
+    border: 1px grey solid;
+}
+
+#btnList{
+    display: inline-block;
+    position:absolute;
+    left: 20%;
+    top: 235px;
+}
+
+.deleteAddBtn{
+    width: 70px;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 12%;
+}
+
+.deleteAddBtn:hover{
+    background-color: azure;
+}
+
+.buttonList{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.listButton{
+    margin: 5px;
+    cursor: pointer;
+}
+
+.fa-trash-can:hover,.fa-pen-to-square:hover{
+    box-shadow: 2px 2px black;
+}
+
+.actionList{
+    width:10%;
 }

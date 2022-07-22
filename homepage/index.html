@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
+        <script src="https://kit.fontawesome.com/c23e4eeff6.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -12,7 +13,7 @@
                     <a class="side-button" href="../aboutme/aboutme.html">About me</a>
                     <a class="side-button" href="../Product/product.html">Information</a>
                 </div>
-                <div id="side-bar"> </div>
+                <div id="side-bar"><i class="fa-regular fa-hand-pointer"></i></i></div>
             </div>
             
             <div class="navigator">
@@ -23,7 +24,23 @@
                     <div class="nav-button">Customer</div>
                 </div>
             </div>
-
+            <div id="a">
+                <div id="searchContainer">
+                    <form  method="get" onsubmit="return false">   
+                        <input type="text" id="inputBox"/>  
+                        <select id="searchDrop">
+                            <option value="name">Name</option>
+                            <option value="age">Age</option>
+                        </select>
+                        <input type="submit" value="Submit" id="submitBtn"/>
+                    </form>
+                </div>
+            </div>
+            
+            <div id="btnList">
+                <button class="deleteAddBtn">Delete</button>
+                <button class="deleteAddBtn">Add</button>
+            </div>
             <div id="table-parent">
                 <h2 id="table-title"></h2>
                 <div id="table-container">
@@ -34,5 +51,7 @@
         </div>
     </body>
 
-    <script type="text/javascript" src="index.js"></script>
+    <script src="index.js"></script>
+    <script src="./search.js"></script>
+    <script src="./deleteData.js"></script>
 </html>
